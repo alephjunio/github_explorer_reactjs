@@ -6,6 +6,7 @@ import api from "../../services/api";
 import logoImage from "../../assets/logo.svg";
 
 import { Title, Form, Repositories, Error } from "./styles";
+import { Link } from "react-router-dom";
 
 interface Repository {
   full_name: string;
@@ -72,7 +73,10 @@ const Dashboard: React.FC = () => {
 
       <Repositories>
         {repositories.map((repository) => (
-          <a key={repository.full_name} href="teste">
+          <Link
+            key={repository.full_name}
+            to={`/repository/${repository.full_name}`}
+          >
             <img
               src={repository.owner.avatar_url}
               alt={repository.owner.login}
@@ -82,7 +86,7 @@ const Dashboard: React.FC = () => {
               <p>{repository.description}</p>
             </div>
             <FiChevronRight size={40} />
-          </a>
+          </Link>
         ))}
       </Repositories>
     </>
